@@ -2,7 +2,7 @@ import gym
 from stable_baselines3 import PPO
 import os
 env = gym.make("LunarLander-v2", render_mode = "human")
-
+#day one
 env.reset()
 models_dir = "models/PPO"
 logdir = "logs"
@@ -13,7 +13,8 @@ if not os.path.exists(logdir):
 
 model = PPO("MlpPolicy", env, verbose = 1)
 TIMESTEPS = 10000
-model.learn(total_timesteps=TIMESTEPS)
+for i in range(30):
+    model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps= False, tb_log_name= "PPO")
 #prints out a sample action
 episodes = 10
 for ep in range(episodes):
